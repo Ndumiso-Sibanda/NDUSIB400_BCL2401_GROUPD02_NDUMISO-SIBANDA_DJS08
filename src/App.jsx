@@ -7,7 +7,7 @@ import Vans from "./pages/Vans"
 import VanDetail from "./pages/VanDetail"
 
 
-//import "./server"
+import "./server"
 
 function App() {
   return (
