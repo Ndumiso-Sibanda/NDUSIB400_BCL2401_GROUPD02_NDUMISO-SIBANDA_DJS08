@@ -17,18 +17,12 @@ import HostVanPhotos from "./pages/Host/HostVanPhotos"
 import NotFound from "./pages/NotFound"
 import Layout from "./components/Layout"
 import HostLayout from "./components/HostLayout"
+import AuthRequired from "./components/AuthRequired"
 
 import "./server"
 
 function App() {
-  /**
-   * Challenge: Create the AuthRequired Layout Route to protect
-   * all the /host routes.
-   * 
-   * For now, just use `const auth = false`
-   * to determine the authenticated status of the user, and
-   * either send them to the /login route, or render the Outlet
-   */
+ 
 
   return (
     <BrowserRouter>
@@ -43,18 +37,20 @@ function App() {
             element={<Login />}
           />
 
-          <Route path="host" element={<HostLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="income" element={<Income />} />
-            <Route path="reviews" element={<Reviews />} />
-            <Route path="vans" element={<HostVans />} />
-            <Route path="vans/:id" element={<HostVanDetail />}>
-              <Route index element={<HostVanInfo />} />
-              <Route path="pricing" element={<HostVanPricing />} />
-              <Route path="photos" element={<HostVanPhotos />} />
+          <Route element={<AuthRequired />}>
+            <Route path="host" element={<HostLayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="income" element={<Income />} />
+              <Route path="reviews" element={<Reviews />} />
+              <Route path="vans" element={<HostVans />} />
+              <Route path="vans/:id" element={<HostVanDetail />}>
+                <Route index element={<HostVanInfo />} />
+                <Route path="pricing" element={<HostVanPricing />} />
+                <Route path="photos" element={<HostVanPhotos />} />
+              </Route>
             </Route>
           </Route>
-          
+
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
