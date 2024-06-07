@@ -542,7 +542,7 @@ i[class*="van-type-"] {
   cursor: not-allowed;
 }
 
-.login-error {
+.login-first {
   color: red;
 }
 
