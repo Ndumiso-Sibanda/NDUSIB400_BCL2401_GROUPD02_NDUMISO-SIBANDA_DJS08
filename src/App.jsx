@@ -5,6 +5,7 @@ import Home from "./pages/Home"
 import About from "./pages/About"
 import Vans from "./pages/Vans/Vans"
 import VanDetail from "./pages/Vans/VanDetail"
+import Login from "./pages/Login"
 import Dashboard from "./pages/Host/Dashboard"
 import Income from "./pages/Host/Income"
 import Reviews from "./pages/Host/Reviews"
@@ -19,8 +20,16 @@ import HostLayout from "./components/HostLayout"
 
 import "./server"
 
-
 function App() {
+  /**
+   * Challenge: Create the AuthRequired Layout Route to protect
+   * all the /host routes.
+   * 
+   * For now, just use `const auth = false`
+   * to determine the authenticated status of the user, and
+   * either send them to the /login route, or render the Outlet
+   */
+
   return (
     <BrowserRouter>
       <Routes>
@@ -29,7 +38,11 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="vans" element={<Vans />} />
           <Route path="vans/:id" element={<VanDetail />} />
-          
+          <Route
+            path="login"
+            element={<Login />}
+          />
+
           <Route path="host" element={<HostLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="income" element={<Income />} />
@@ -41,13 +54,13 @@ function App() {
               <Route path="photos" element={<HostVanPhotos />} />
             </Route>
           </Route>
-          <Route path="*" element={<NotFound />}/>
+          
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
   )
 }
-
 
 
 ReactDOM
